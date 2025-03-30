@@ -14,7 +14,9 @@ This is a small project made to practice using Redis to optimize HTTP GET method
 ## _How Install_
 
 Java -> **17**
+
 Maven -> **3.9.8**
+
 Docker -> >= **27.3.1**
 
 In the root of project use:
@@ -62,7 +64,7 @@ Request body example:
 
 ## _Contributing_
 
-This project is a personal project, so no PR's will be merged!
+This project is a personal project, so PR's won't be merged!
 
 ## _License_
 [See LICENSE](./LICENSE)
