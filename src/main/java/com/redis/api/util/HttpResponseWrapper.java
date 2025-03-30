@@ -10,9 +10,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * Custom wrapper for HttpServletResponse to capture response body.
- */
 public class HttpResponseWrapper extends HttpServletResponseWrapper {
 
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -27,29 +24,27 @@ public class HttpResponseWrapper extends HttpServletResponseWrapper {
         return new ServletOutputStream() {
             @Override
             public boolean isReady() {
-                // Indicate whether the stream is ready to be written to.
-                return true; // Changed to true for better compatibility
+                return true;
             }
 
             @Override
             public void setWriteListener(WriteListener writeListener) {
-                // No-op for synchronous processing
             }
 
             @Override
             public void write(int b) throws IOException {
-                outputStream.write(b); // Write data to buffer
+                outputStream.write(b);
             }
         };
     }
 
     @Override
     public PrintWriter getWriter() throws IOException {
-        return printWriter; // Use PrintWriter to capture text data
+        return printWriter;
     }
 
     public byte[] getResponseData() throws IOException {
-        printWriter.flush(); // Ensure all data is written to the buffer
-        return outputStream.toByteArray(); // Return buffered response data
+        printWriter.flush();
+        return outputStream.toByteArray();
     }
 }

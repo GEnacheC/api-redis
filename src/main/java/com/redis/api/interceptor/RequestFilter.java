@@ -16,9 +16,6 @@ import com.redis.api.util.HttpResponseWrapper;
 
 import java.io.IOException;
 
-/**
- * Filter to capture and log the response body.
- */
 @Component
 public class RequestFilter implements Filter {
 
