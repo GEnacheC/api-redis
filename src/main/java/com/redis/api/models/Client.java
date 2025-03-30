@@ -25,6 +25,11 @@ public class Client implements Serializable {
 
     public Client() {}
 
+    public Client(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public Client(Long id, String name, Integer age) {
         this.id = id;
         this.name = name;

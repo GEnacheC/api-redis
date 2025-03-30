@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.redis.api.models.Client;
+import com.redis.api.models.records.ClientRecord;
 import com.redis.api.repository.ClientRepository;
 
 @Service
@@ -18,10 +19,11 @@ public class ClientService {
     RedisService redis;
 
     public List<Client> getAll() {
-
-        redis.get("");
-
         return repository.findAll();
+    }
+
+    public Client save(ClientRecord data) {
+        return repository.save(new Client(data.name(), data.age()));
     }
 
 }

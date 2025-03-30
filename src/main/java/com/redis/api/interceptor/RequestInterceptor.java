@@ -28,6 +28,7 @@ public class RequestInterceptor implements HandlerInterceptor {
                 response.setStatus(HttpServletResponse.SC_OK);
                 response.setContentType("application/json; charset=UTF-8");
                 response.getOutputStream().write(redisValue.getBytes(StandardCharsets.UTF_8));
+                // Return false to not enter in Controller
                 return false;
             }
         }
