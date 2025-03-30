@@ -26,8 +26,7 @@ public class RequestFilter implements Filter {
     private RedisService redis;
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        // No initialization required
+    public void init(FilterConfig filterConfig) throws ServletException {// No initialization required
     }
 
     @Override
@@ -39,18 +38,14 @@ public class RequestFilter implements Filter {
 
         HttpServletRequest httpRequest = ((HttpServletRequest) request);
         
-        // Cast response to HttpServletResponse
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-        // Wrap the response to capture the body
+        
         HttpResponseWrapper responseWrapper = new HttpResponseWrapper(httpResponse);
-        // Continue with the filter chain
+        
         chain.doFilter(request, responseWrapper);
-        // Get the response body data from the wrapper
+        
         byte[] responseData = responseWrapper.getResponseData();
         String responseBody = new String(responseData, httpResponse.getCharacterEncoding());
-        
-        // Log the response body
-        System.out.println("Response Body: " + responseBody);
         
         if(httpRequest.getMethod().equals("GET")) {
             if(redis.get(httpRequest.getRequestURI()) == null) {
@@ -58,12 +53,10 @@ public class RequestFilter implements Filter {
             }
         }
         
-        // Write the response body back to the client
         response.getOutputStream().write(responseData);
     }
 
     @Override
     public void destroy() {
-        // No cleanup required
     }
 }

@@ -14,11 +14,9 @@ public class RequestInterceptorConfig implements WebMvcConfigurer {
     @Autowired
     private RedisService redis;
 
-    // Register an interceptor with the registry, Interceptor name : RequestInterceptor
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new RequestInterceptor(redis));
     }
-    //* We can register any number of interceptors with our spring application context
 }
 
